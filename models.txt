@@ -1,0 +1,15 @@
+hierarchy:
+
+pieces:
+  color: white,black
+  type : pawn, king, queen, bishop, rook, horse, 
+  position: 8 x 8
+  alive: true, false
+
+type x:
+   move: p
+   value:   
+
+state: win, draw, ongoing   
+
+moves: capture, attack, check, checkmate, castling, promotion

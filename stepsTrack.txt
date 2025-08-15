@@ -1,0 +1,2 @@
+1 took reference from https://www.instructables.com/Playing-Chess/ for chessrules and setup
+2 as per ref in 1, started modelling the classes and objects for basic features first
