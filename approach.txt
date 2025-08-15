@@ -1,2 +1,3 @@
 first cover the basics
 then go on to add rest untill complete
+start by creating what is reqd and then modify as you get new variables

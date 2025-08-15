@@ -2,14 +2,18 @@ hierarchy:
 
 pieces:
   color: white,black
-  type : pawn, king, queen, bishop, rook, horse, 
-  position: 8 x 8
+  curr_position: 8 x 8
   alive: true, false
+  move to: a position
 
-type x:
+typeX:  pawn, king, queen, bishop, rook, knight, 
    move: p
    value:   
 
 state: win, draw, ongoing   
 
 moves: capture, attack, check, checkmate, castling, promotion
+
+position:
+  location: 8 x 8
+  occupied: true/false
