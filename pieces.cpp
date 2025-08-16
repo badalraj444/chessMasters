@@ -1,47 +1,70 @@
 #include <iostream>
-
+#include <vector>
+#include <cmath>
+#include <utility>
 using namespace std;
 
 class pieces
 {
 protected:
-    string color;
+    int color; //0 or 1
     int x, y; // pos
     bool alive;
-
+    
 public:
-void moveTo(int x_, int y_)
+virtual ~pieces() = default;
+virtual bool validMove(int x1, int y1) = 0;
+void moveTo(int X, int Y)
     {
-        if (x_ < 1 || x_ > 8 || y_ < 1 || y_ > 8)
+        if  (X < 1 || X > 8 || Y < 1 || Y > 8)
         {
             // throw error
-            cout<<"invalid position!";
+            cout<<"error\n";
+            return;
         }
-        x = x_;
-        y = y_;
+        if(!validMove(X,Y)){
+            //throw error
+            cout<<"error\n";
+            return;
+        }
+        x = X;
+        y = Y;
     }
-    pieces(string color_, int x_, int y_){
-        color = color_;
-        moveTo(x_ , y_);
+    pieces(int C, int X, int Y){
+        color = C;
+        x = X;
+        y = Y;
         alive = true;
     }
     void capture(){
         alive = false;
         //free position
     }
-void getinfo(){
-    cout<<"color: "<<color<<endl;
-    cout<<"position: "<<x<<" , "<<y<<endl;
-    cout<<"alive: "<<alive<<endl;
-}    
+    int getColor() const{
+        return color;
+    }    
+    pair<int,int> getPosition() const{
+        return make_pair(x,y);
+    }
+    void getInfo() const{
+        cout<<"color: "<<color<<endl<<"position: "<<x<<" "<<y<<endl;
+    }
+};
+
+class king: public pieces{
+public:
+    king(int C, int X, int Y) : pieces(C, X, Y) {
+    }
+    bool validMove(int x1, int y1){
+        if(abs(x1-x)>1 || abs(y1-y)>1) return false;
+        return true;
+    }
+
 };
 
 int main(){
-    pieces p1("white",2,3);
-    p1.getinfo();
-    p1.capture();
-    p1.getinfo();
-    p1.moveTo(5,4);
-    p1.getinfo();
+    king k1(1,2,2);
+    k1.moveTo(4,2);
+    k1.getInfo();
     return 0;
 }
